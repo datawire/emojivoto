@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"sort"
 	"strconv"
 
 	"google.golang.org/grpc"
@@ -25,6 +26,17 @@ type WebApp struct {
 type telepresenceIdHeader struct{}
 
 const telepresenceInterceptHeaderName = "x-telepresence-intercept-id"
+
+type EmojiPayload struct {
+	Shortcode string `json:"shortcode"`
+	Unicode   string `json:"unicode"`
+}
+
+type ByShortCode []EmojiPayload
+
+func (e ByShortCode) Len() int           { return len(e) }
+func (e ByShortCode) Swap(i, j int)      { e[i], e[j] = e[j], e[i] }
+func (e ByShortCode) Less(i, j int) bool { return e[i].Shortcode < e[j].Shortcode }
 
 func addTelepresenceIdHeader(r *http.Request) context.Context {
 	return context.WithValue(r.Context(), telepresenceIdHeader{}, r.Header.Get("x-telepresence-intercept-id"))
@@ -47,15 +59,17 @@ func (app *WebApp) listEmojiHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	list := make([]map[string]string, 0)
+	response := make([]EmojiPayload, 0)
 	for _, e := range serviceResponse.List {
-		list = append(list, map[string]string{
-			"shortcode": e.Shortcode,
-			"unicode":   e.Unicode,
+		response = append(response, EmojiPayload{
+			Shortcode: e.Shortcode,
+			Unicode:   e.Unicode,
 		})
 	}
 
-	err = writeJsonBody(w, http.StatusOK, list)
+	sort.Sort(ByShortCode(response))
+
+	err = writeJsonBody(w, http.StatusOK, response)
 
 	if err != nil {
 		writeError(err, w, r, http.StatusInternalServerError)
