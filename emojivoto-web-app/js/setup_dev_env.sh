@@ -93,8 +93,9 @@ check_init_config() {
 }
 
 run_dev_container() {
-    echo 'Running dev container (and downloading if necessary)'
-
+    echo 'Configuring development container. This container encapsulates all the dependencies needed to run the emojivoto-web-app locally.'
+    echo 'This may take a few moments to download and start.'
+    
     # check if dev container is already running and kill if so
     CONTAINER_ID=$(docker inspect --format="{{.Id}}" "ambassador-demo" )
     if [ ! -z "$CONTAINER_ID" ]; then
