@@ -1,0 +1,11 @@
+name: Run Integration Test
+on:
+  pull_request:
+    types: [opened, reopened]
+jobs:
+  my-job:
+    name: Run Integration Test using Remote Cluster
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        uses: .github/actions/integration-tests
