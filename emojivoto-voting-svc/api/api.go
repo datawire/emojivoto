@@ -18,7 +18,7 @@ func (pS *PollServiceServer) vote(shortcode string) (*pb.VoteResponse, error) {
 }
 
 func (pS *PollServiceServer) VoteDoughnut(_ context.Context, _ *pb.VoteRequest) (*pb.VoteResponse, error) {
-	return pS.vote(":doughnut:")
+	return pS.vote(":doughnutA:")
 }
 
 func (pS *PollServiceServer) VotePoop(_ context.Context, _ *pb.VoteRequest) (*pb.VoteResponse, error) {
