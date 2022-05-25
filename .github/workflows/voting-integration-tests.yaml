@@ -29,11 +29,11 @@ jobs:
           ${{ env.KUBECONFIG_FILE }}
           EOF
       - name: Install Telepresence
-        uses: datawire/development-telepresence-intercept/install@v0.47
+        uses: datawire/development-telepresence-intercept/install@v0.48
         with:
           version: 2.5.8
       - name: Connect to remote cluster
-        uses: datawire/development-telepresence-intercept/connect@v0.47
+        uses: datawire/development-telepresence-intercept/connect@v0.48
       - name: Display files
         run: |
           ls $HOME/.config/telepresence
