@@ -34,6 +34,10 @@ jobs:
           version: 2.5.8
       - name: Connect to remote cluster
         uses: datawire/development-telepresence-intercept/connect@v0.42
+      - name: Display files
+        run: |
+          ls $HOME/.config/telepresence
+          cat $HOME/.config/telepresence/id
       - name: Login to Ambassador Cloud
         uses: datawire/telepresence-actions/login@v0.2
         with:
