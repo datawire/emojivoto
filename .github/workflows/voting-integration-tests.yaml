@@ -29,11 +29,11 @@ jobs:
           ${{ env.KUBECONFIG_FILE }}
           EOF
       - name: Install Telepresence
-        uses: datawire/development-telepresence-intercept/install@v0.39
+        uses: datawire/development-telepresence-intercept/install@v0.40
         with:
           version: 2.5.8
       - name: Connect to remote cluster
-        uses: datawire/development-telepresence-intercept/connect@v0.39
+        uses: datawire/development-telepresence-intercept/connect@v0.40
       - name: Login to Ambassador Cloud
         uses: datawire/telepresence-actions/login@v0.2
         with:
