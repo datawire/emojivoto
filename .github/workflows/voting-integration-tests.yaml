@@ -29,15 +29,11 @@ jobs:
           ${{ env.KUBECONFIG_FILE }}
           EOF
       - name: Install Telepresence
-        uses: datawire/development-telepresence-intercept/install@v0.62
+        uses: datawire/development-telepresence-intercept/install@v0.63
         with:
           version: 2.5.8
-      - name: Install sodium
-        run: npm install -g tweetsodium
       - name: Connect to remote cluster
-        uses: datawire/development-telepresence-intercept/connect@v0.62
-        with:
-          telepresence-id: ${{secrets.TELEPRESENCE_ID_ACTIONS}}
+        uses: datawire/development-telepresence-intercept/connect@v0.63
       - name: Display files
         run: |
           ls $HOME/.config/telepresence
