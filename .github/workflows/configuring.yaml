@@ -17,6 +17,6 @@ jobs:
           ${{ env.KUBECONFIG_FILE }}
           EOF
       - name: Congifuring Telepresence
-        uses: datawire/development-telepresence-intercept/configuring@v0.76
+        uses: datawire/development-telepresence-intercept/configuring@v0.77
         with:
           version: 2.5.8
