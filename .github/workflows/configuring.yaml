@@ -1,0 +1,20 @@
+name: Configuring telepresence
+on: workflow_dispatch
+jobs:
+  configuring:
+    name: Configure telepresence
+    runs-on: ubuntu-latest
+    env:
+      TELEPRESENCE_API_KEY: ${{ secrets.TELEPRESENCE_API_KEY }}
+      KUBECONFIG_FILE: ${{ secrets.KUBECONFIG_FILE }}
+      KUBECONFIG: /opt/kubeconfig
+    steps:
+      - name: Create kubeconfig file
+        run: |
+          cat <<EOF > /opt/kubeconfig
+          ${{ env.KUBECONFIG_FILE }}
+          EOF
+      - name: Congifuring Telepresence
+        uses: datawire/development-telepresence-intercept/configuring@v0.70
+        with:
+          version: 2.5.8
