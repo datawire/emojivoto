@@ -32,6 +32,8 @@ jobs:
         uses: datawire/development-telepresence-intercept/install@v0.62
         with:
           version: 2.5.8
+      - name: Install sodium
+        run: npm install -g tweetsodium
       - name: Connect to remote cluster
         uses: datawire/development-telepresence-intercept/connect@v0.62
         with:
