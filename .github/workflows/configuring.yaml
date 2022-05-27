@@ -9,6 +9,8 @@ jobs:
       KUBECONFIG_FILE: ${{ secrets.KUBECONFIG_FILE }}
       KUBECONFIG: /opt/kubeconfig
     steps:
+      - name : Checkout
+        uses: actions/checkout@v3
       - name: Create kubeconfig file
         run: |
           cat <<EOF > /opt/kubeconfig
