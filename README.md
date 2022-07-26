@@ -176,7 +176,7 @@ GRPC_PORT=8082 go run emojivoto-emoji-svc/cmd/server.go
 ```bash
 cd emojivoto-web/webapp
 yarn install
-yarn webpack # one time asset-bundling OR
+# yarn webpack # one time asset-bundling OR
 yarn webpack-dev-server --port 8083 # bundle/serve reloading assets
 ```
 

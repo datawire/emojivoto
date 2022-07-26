@@ -1,4 +1,4 @@
-export IMAGE_TAG := v11.1
+export IMAGE_TAG := v11.2
 
 .PHONY: package protoc test
 
@@ -10,9 +10,8 @@ clean:
 	mkdir -p $(target_dir)
 	mkdir -p gen
 
-protoc:
-	protoc -I .. ../proto/*.proto --go_out=plugins=grpc:gen
-
+protoc: 
+	protoc -I .. ../proto/*.proto --go_out=paths=source_relative:./gen --go-grpc_out=paths=source_relative:./gen
 package: protoc compile build-container
 
 package-ui: build-container-ui
