@@ -3,6 +3,7 @@ version: '3'
 services:
   web:
     image: datawire/emojivoto-web:v11.3
+    platform: linux/amd64
     environment:
       - WEB_PORT=8080
       - EMOJISVC_HOST=emoji-svc:8080
@@ -16,6 +17,7 @@ services:
 
   vote-bot:
     image: datawire/emojivoto-web:v11.3
+    platform: linux/amd64
     entrypoint: emojivoto-vote-bot
     environment:
       - WEB_HOST=web:8080
@@ -24,6 +26,7 @@ services:
 
   emoji-svc:
     image: datawire/emojivoto-emoji-svc:v11.3
+    platform: linux/amd64
     environment:
       - GRPC_PORT=8080
     ports:
@@ -31,6 +34,7 @@ services:
 
   voting-svc:
     image: datawire/emojivoto-voting-svc:v11.3
+    platform: linux/amd64
     environment:
       - GRPC_PORT=8080
     ports:

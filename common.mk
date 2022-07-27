@@ -17,7 +17,7 @@ package: protoc compile build-container
 package-ui: build-container-ui
 
 build-container:
-	docker build .. -t "datawire/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name)
+	docker build .. --platform linux/amd64 -t "datawire/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name)
 
 build-multi-arch:
 	docker buildx build .. -t "datawire/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name) \
