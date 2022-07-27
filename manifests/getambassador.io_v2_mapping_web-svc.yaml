@@ -8,3 +8,14 @@ spec:
   rewrite: /api/
   resolver: endpoint
   service: web-svc:8080
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: web-svc-openapi
+  namespace: emojivoto
+spec:
+  service: web-svc:8080
+  prefix: /api/openapi
+  docs:
+    path: /api/openapi
