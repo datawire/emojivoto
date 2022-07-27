@@ -1,4 +1,4 @@
-export IMAGE_TAG := v11.4
+export IMAGE_TAG := v11.5
 
 .PHONY: package protoc test
 
@@ -12,12 +12,13 @@ clean:
 
 protoc: 
 	protoc -I .. ../proto/*.proto --go_out=paths=source_relative:./gen --go-grpc_out=paths=source_relative:./gen
+
 package: protoc compile build-container
 
 package-ui: build-container-ui
 
 build-container:
-	docker build .. --platform linux/amd64 -t "jacobbeck/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name)
+	docker build .. --platform linux/amd64 -t "datawire/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name)
 
 build-multi-arch:
 	docker buildx build .. -t "jacobbeck/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name) \
@@ -27,7 +28,7 @@ build-container-ui:
 	docker build .. -t "datawire/emojivoto-web-app:$(IMAGE_TAG)" --build-arg svc_name=emojivoto-web-app -f ../Dockerfile-ui
 
 compile:
-	GOOS=linux go build -v -o $(target_dir)/$(svc_name) cmd/server.go
+	GOOS=linux GOARCH=amd64 go build -v -o $(target_dir)/$(svc_name) cmd/server.go
 
 test:
 	go test ./...
