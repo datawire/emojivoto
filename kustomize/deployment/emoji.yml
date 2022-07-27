@@ -12,18 +12,18 @@ metadata:
   labels:
     app.kubernetes.io/name: emoji
     app.kubernetes.io/part-of: emojivoto
-    app.kubernetes.io/version: v11.3
+    app.kubernetes.io/version: v11.1
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: emoji-svc
-      version: v11.3
+      version: v11.1
   template:
     metadata:
       labels:
         app: emoji-svc
-        version: v11.3
+        version: v11.1
     spec:
       serviceAccountName: emoji
       containers:

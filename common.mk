@@ -1,4 +1,4 @@
-export IMAGE_TAG := v11.3
+export IMAGE_TAG := v11.4
 
 .PHONY: package protoc test
 
@@ -17,11 +17,11 @@ package: protoc compile build-container
 package-ui: build-container-ui
 
 build-container:
-	docker build .. --platform linux/amd64 -t "datawire/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name)
+	docker build .. --platform linux/amd64 -t "jacobbeck/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name)
 
 build-multi-arch:
-	docker buildx build .. -t "datawire/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name) \
-		-f ../Dockerfile-multi-arch --platform linux/amd64,linux/arm64,linux/arm/v7 
+	docker buildx build .. -t "jacobbeck/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name) \
+		-f ../Dockerfile-multi-arch --platform linux/amd64,linux/arm64 --push
 
 build-container-ui:
 	docker build .. -t "datawire/emojivoto-web-app:$(IMAGE_TAG)" --build-arg svc_name=emojivoto-web-app -f ../Dockerfile-ui
