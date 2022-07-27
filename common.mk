@@ -21,7 +21,7 @@ build-container:
 	docker build .. --platform linux/amd64 -t "datawire/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name)
 
 build-multi-arch:
-	docker buildx build .. -t "jacobbeck/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name) \
+	docker buildx build .. -t "datawire/$(svc_name):$(IMAGE_TAG)" --build-arg svc_name=$(svc_name) \
 		-f ../Dockerfile-multi-arch --platform linux/amd64,linux/arm64 --push
 
 build-container-ui:
