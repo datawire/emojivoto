@@ -198,7 +198,7 @@ connect_local_dev_env_to_remote() {
     telepresence quit
     telepresence login --apikey=${AMBASSADOR_API_KEY}
     telepresence connect
-    telepresence intercept web-app-57bc7c4959 -n ${EMOJIVOTO_NS} --service web-app --port 8083:80 --ingress-port 80 --ingress-host ${svcName}.ambassador --ingress-l5 ${svcName}.ambassador
+    telepresence intercept web-app-77c6b8c9dd -n ${EMOJIVOTO_NS} --service web-app --port 8083:80 --ingress-port 80 --ingress-host ${svcName}.ambassador --ingress-l5 ${svcName}.ambassador
     telOut=$?
     if [ $telOut != 0 ]; then
         send_telemetry "interceptFailed"
