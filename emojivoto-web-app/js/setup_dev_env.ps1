@@ -144,7 +144,7 @@ function install_upgrade_telepresence{
         }
     }
     if ($install_telepresence) {
-        $telepresence_download_url = "https://app.getambassador.io/download/tel2/windows/amd64/2.14.2/telepresence-setup.exe"
+        $telepresence_download_url = "https://app.getambassador.io/download/tel2/windows/amd64/2.14.4/telepresence-setup.exe"
         Invoke-WebRequest $telepresence_download_url -OutFile telepresence-setup.exe
         Start-Process .\telepresence-setup.exe -NoNewWindow -Wait
         Remove-Item telepresence-setup.exe -Recurse -Confirm:$false -Force
