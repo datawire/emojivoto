@@ -98,7 +98,7 @@ function run_dev_container{
     if ($CONTAINER_ID) {
         docker kill $CONTAINER_ID >$null
     }
-    docker run -d --name ambassador-demo --pull always --network=container:tp-default --rm -it -v ${PWD}:/opt/emojivoto/emojivoto-web-app/js datawire/intermediate-tour:20230515.154709
+    docker run -d --name ambassador-demo --pull always --network=container:tp-default-emojivoto-cn --rm -it -v ${PWD}:/opt/emojivoto/emojivoto-web-app/js datawire/intermediate-tour:20230515.154709
     $CONTAINER_ID=$(docker ps --filter 'name=ambassador-demo' --format '{{.ID}}')
     send_telemetry("devContainerStarted")
 }

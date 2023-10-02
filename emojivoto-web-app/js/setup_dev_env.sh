@@ -131,7 +131,7 @@ run_dev_container() {
     fi
 
     # run the dev container, exposing 8081 gRPC port and volume mounting code directory
-    docker run -d --name ambassador-demo --pull always --network=container:tp-default --rm -it -v $(pwd):/opt/emojivoto/emojivoto-web-app/js datawire/intermediate-tour
+    docker run -d --name ambassador-demo --pull always --network=container:tp-default-emojivoto-cn --rm -it -v $(pwd):/opt/emojivoto/emojivoto-web-app/js datawire/intermediate-tour
     CONTAINER_ID=$(docker ps --filter 'name=ambassador-demo' --format '{{.ID}}')
     send_telemetry "devContainerStarted"    
 }
