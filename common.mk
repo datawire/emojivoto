@@ -11,7 +11,7 @@ clean:
 	mkdir -p gen
 
 protoc:
-	protoc -I .. ../proto/*.proto --go-grpc_out=gen
+	protoc -I .. ../proto/*.proto --go_out=gen --go-grpc_out=gen
 
 package: protoc compile build-container
 
