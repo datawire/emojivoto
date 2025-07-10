@@ -1,2 +1,240 @@
-# Generated spec for Emojivoto Web API Gateway
-# This would contain the actual spec content - updated again
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Emojivoto Web API Gateway",
+    "description": "Implements the user-facing web server for emojivoto. Exposes RESTful HTTP API endpoints that proxy requests to backend gRPC emoji and voting services. Handles routes for emoji listing, voting, leaderboard, and OpenAPI docs. | 4 routes discovered",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "web-api",
+      "description": "HTTP endpoints for emoji listing, voting, leaderboard, and documentation"
+    },
+    {
+      "name": "proxy",
+      "description": "Acts as gateway/proxy to internal gRPC services"
+    }
+  ],
+  "paths": {
+    "/api/list": {
+      "get": {
+        "tags": [
+          "web-api"
+        ],
+        "description": "Returns a list of all available emoji, including their shortcode and unicode values.",
+        "operationId": "listEmojiHandler",
+        "responses": {
+          "200": {
+            "description": "A JSON array of emoji objects each containing shortcode and unicode fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "shortcode": {
+                        "type": "string"
+                      },
+                      "unicode": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error if the emoji service request fails.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/vote": {
+      "post": {
+        "tags": [
+          "web-api"
+        ],
+        "description": "Submits a vote for an emoji identified by the shortcode provided in the request body form parameter 'choice'. Validates the shortcode against existing emojis and proxies the vote to the corresponding gRPC voting method. Returns appropriate errors for missing or invalid shortcodes.",
+        "operationId": "voteEmoji",
+        "requestBody": {
+          "description": "The emoji shortcode to vote for, provided as form data with key 'choice'.",
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "choice": {
+                    "type": "string",
+                    "description": "The shortcode of the emoji to vote for, e.g., ':joy:'."
+                  }
+                },
+                "required": [
+                  "choice"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vote registered successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to missing or invalid emoji shortcode.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error if communication with emoji or voting service fails.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/leaderboard": {
+      "get": {
+        "tags": [
+          "web-api"
+        ],
+        "description": "Retrieves a leaderboard with vote counts and associated emoji information.",
+        "operationId": "getLeaderboard",
+        "responses": {
+          "200": {
+            "description": "A list of leaderboard entries each containing the number of votes and associated emoji information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "votes": {
+                        "type": "string",
+                        "description": "Number of votes for the emoji."
+                      },
+                      "unicode": {
+                        "type": "string",
+                        "description": "The unicode representation of the emoji."
+                      },
+                      "shortcode": {
+                        "type": "string",
+                        "description": "The shortcode identifier for the emoji."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while retrieving leaderboard.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/openapi": {
+      "get": {
+        "tags": [
+          "web-api"
+        ],
+        "description": "Serves the OpenAPI documentation for the web API in JSON format by loading it from a local YAML file and returning it as JSON.",
+        "operationId": "getOpenAPIDocumentation",
+        "responses": {
+          "200": {
+            "description": "Successful response with the OpenAPI documentation in JSON format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error if the OpenAPI documentation file could not be loaded or there was an encoding error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

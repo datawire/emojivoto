@@ -1,2 +1,3406 @@
-# Generated spec for Emoji Voting API Service
-# This would contain the actual spec content - updated again
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Emoji Voting API Service",
+    "description": "Provides voting API for emoji, allowing voting for specific emojis and querying poll results. Exposes gRPC endpoints for internal consumption. | 101 routes discovered",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "voting",
+      "description": "Operations for casting votes and retrieving voting/poll results"
+    }
+  ],
+  "paths": {
+    "/emojivoto.v1.VotingService/VotePoop": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Submits a vote for the poop emoji via the VotingService gRPC endpoint. This endpoint accepts an empty VoteRequest and returns an empty VoteResponse upon successful vote submission.",
+        "operationId": "votePoop",
+        "requestBody": {
+          "description": "Empty request to vote for the poop emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Empty VoteRequest message for voting, no properties required."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vote submitted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Empty VoteResponse message indicating success."
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error."
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteJoy": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Submits a vote for the joy emoji via gRPC. This endpoint does not require a request body and returns an empty response indicating the vote was recorded or an error.",
+        "operationId": "submitJoyVote",
+        "responses": {
+          "200": {
+            "description": "Acknowledgment that the vote was recorded successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error occurred while submitting the vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteSunglasses": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Submits a vote for the sunglasses emoji via gRPC. This endpoint registers a vote for the sunglasses emoji and returns a response indicating success or failure.",
+        "operationId": "VoteSunglasses",
+        "responses": {
+          "200": {
+            "description": "Successfully recorded a vote for the sunglasses emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response indicating failure to record the vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteRelaxed": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Submits a vote for the relaxed emoji via gRPC. This endpoint registers a vote identified by the relaxed emoji shortcode ':relaxed:' in the voting service.",
+        "operationId": "voteRelaxedEmoji",
+        "responses": {
+          "200": {
+            "description": "Vote submitted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteStuckOutTongueWinkingEye": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Submits a vote for the stuck out tongue winking eye emoji via gRPC. This endpoint registers a vote for the :stuck_out_tongue_winking_eye: emoji and returns a vote response indicating success or failure.",
+        "operationId": "voteStuckOutTongueWinkingEye",
+        "responses": {
+          "200": {
+            "description": "Successful vote submission response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteMoneyMouthFace": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Submits a vote for the money mouth face emoji via gRPC. This endpoint corresponds to the VoteMoneyMouthFace rpc in the VotingService and does not require any request body parameters. It returns an empty VoteResponse indicating the vote was recorded.",
+        "operationId": "postVoteMoneyMouthFace",
+        "responses": {
+          "200": {
+            "description": "Successful vote submission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteFlushed": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Submits a vote for the flushed emoji via gRPC. This endpoint represents the VoteFlushed RPC method that registers a vote for the :flushed: emoji and returns a VoteResponse indicating the success or failure of the operation.",
+        "operationId": "submitFlushedEmojiVote",
+        "requestBody": {
+          "description": "VoteRequest payload (empty object).",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "VoteResponse confirming the vote was successfully processed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error or failure processing the vote."
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteMask": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Submits a vote for the mask emoji via gRPC. This endpoint registers a vote for the ':mask:' emoji and returns an empty response upon success.",
+        "operationId": "voteMask",
+        "responses": {
+          "200": {
+            "description": "Vote successfully recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteNerdFace": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "summary": "Submit a nerd face emoji vote",
+        "description": "Submits a vote for the nerd face emoji via gRPC. This endpoint does not require a request body since the vote is pre-defined as the nerd face emoji. Returns a VoteResponse indicating success or failure of the vote submission.",
+        "operationId": "voteNerdFace",
+        "requestBody": {
+          "description": "Empty request body as VoteRequest message contains no fields",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Successful vote submission response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteGhost": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Submits a vote for the ghost emoji via gRPC. This endpoint registers a vote specifically for the ghost emoji and returns a VoteResponse indicating the operation result.",
+        "operationId": "postVoteGhost",
+        "responses": {
+          "200": {
+            "description": "Successful vote submission for the ghost emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error occurred while processing the vote."
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteSkullAndCrossbones": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "summary": "Cast a vote for the Skull and Crossbones emoji.",
+        "description": "Endpoint to cast a vote specifically for the Skull and Crossbones emoji. This increments the vote count for this emoji in the voting service.",
+        "operationId": "VoteSkullAndCrossbones",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteHeartEyesCat": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "summary": "Cast a vote for the Heart Eyes Cat emoji.",
+        "description": "Cast a vote for the Heart Eyes Cat emoji. This endpoint registers a vote for the emoji identified as :heart_eyes_cat:. No request body parameters are required.",
+        "operationId": "voteHeartEyesCat",
+        "responses": {
+          "200": {
+            "description": "Vote successfully recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteHearNoEvil": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Endpoint to cast a vote for the Hear No Evil emoji. This POST operation registers a vote and returns an immediate response indicating success or failure.",
+        "operationId": "VoteHearNoEvil",
+        "responses": {
+          "200": {
+            "description": "Vote registered successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred while processing the vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteSeeNoEvil": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the See No Evil emoji. This endpoint accepts a POST request with no body and registers a vote for the ':see_no_evil:' emoji. Responds with an empty vote confirmation.",
+        "operationId": "voteSeeNoEvil",
+        "requestBody": {
+          "description": "Empty request body for voting the See No Evil emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vote successfully cast for the See No Evil emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteSpeakNoEvil": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Endpoint to cast a vote for the Speak No Evil emoji. This operation casts one vote for the ':speak_no_evil:' emoji.",
+        "operationId": "voteSpeakNoEvil",
+        "responses": {
+          "200": {
+            "description": "The vote was successfully recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred while casting the vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBoy": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "This endpoint allows the client to cast a vote for the Boy emoji by submitting a POST request. The server processes the vote and responds accordingly.",
+        "operationId": "VoteBoy",
+        "responses": {
+          "200": {
+            "description": "Vote successfully cast for the Boy emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteGirl": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the Girl emoji by making a POST request to this endpoint. The request body is empty, and a successful vote returns a minimal response.",
+        "operationId": "voteGirlEmoji",
+        "requestBody": {
+          "description": "Empty request body for voting the Girl emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful vote cast for the Girl emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteMan": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the Man emoji. This endpoint allows a client to submit a vote for the 'Man' emoji in the voting service.",
+        "operationId": "voteMan",
+        "responses": {
+          "200": {
+            "description": "Successful vote for the Man emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteWoman": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the Woman emoji. This endpoint registers a vote for the woman emoji and returns a simple confirmation response.",
+        "operationId": "voteWoman",
+        "responses": {
+          "200": {
+            "description": "A successful response indicating the vote was counted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteOlderMan": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the Older Man emoji by invoking the VoteOlderMan RPC endpoint. This POST operation registers a vote for the :older_man: emoji in the voting service.",
+        "operationId": "voteOlderMan",
+        "responses": {
+          "200": {
+            "description": "Vote was successfully recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the Older Man emoji.",
+        "requestBody": {
+          "description": "Empty request body for casting vote.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VotePoliceman": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'policeman' emoji character. This endpoint registers a user's vote for the policeman emoji in the voting service.",
+        "operationId": "votePoliceman",
+        "requestBody": {
+          "description": "Empty request body to cast a vote for the policeman emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Empty object as the request does not require any additional data."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vote registered successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "An empty response indicating the vote was successfully processed."
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message describing the failure.",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteGuardsman": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'guardsman' emoji character. This endpoint registers a vote for the :guardsman: shortcode in the voting service.",
+        "operationId": "VoteGuardsman",
+        "responses": {
+          "200": {
+            "description": "Successful vote for guardsman emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "summary": "Vote for the guardsman emoji.",
+        "requestBody": {
+          "description": "Empty JSON object as vote request.",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteConstructionWorkerMan": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'construction worker man' emoji character.",
+        "operationId": "voteConstructionWorkerMan",
+        "requestBody": {
+          "description": "Empty request body for casting a vote.",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Indicates the vote was successfully cast.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VotePrince": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'prince' emoji character. This endpoint accepts a request to register a vote for the prince emoji and returns an empty successful response.",
+        "operationId": "votePrince",
+        "requestBody": {
+          "description": "Vote request with no payload.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vote was cast successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VotePrincess": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'princess' emoji character. This endpoint accepts a POST request with an empty request body and returns an empty response indicating the vote was registered for the princess emoji.",
+        "operationId": "votePrincess",
+        "requestBody": {
+          "description": "Empty request payload as vote operation does not require parameters.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful vote response indicating the vote was counted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteManInTuxedo": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'man in tuxedo' emoji character.",
+        "operationId": "voteManInTuxedo",
+        "responses": {
+          "200": {
+            "description": "Successful vote response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBrideWithVeil": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'bride with veil' emoji character. This endpoint does not require any request body content and returns an empty response on success.",
+        "operationId": "voteBrideWithVeil",
+        "responses": {
+          "200": {
+            "description": "Successful vote for bride with veil emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteMrsClaus": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "summary": "Cast a vote for the 'mrs. claus' emoji.",
+        "description": "This endpoint casts a vote for the 'mrs. claus' emoji character in the voting service.",
+        "operationId": "voteMrsClaus",
+        "responses": {
+          "200": {
+            "description": "Vote successfully cast.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Empty request body to cast a vote for 'mrs. claus'.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteSanta": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'santa' emoji character. This endpoint registers a vote for the Santa emoji and returns a simple vote response indicating the operation result.",
+        "operationId": "VoteSanta",
+        "responses": {
+          "200": {
+            "description": "Successful vote operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the Santa emoji",
+        "requestBody": {
+          "description": "Request payload for voting Santa emoji",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteTurkey": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'turkey' emoji character. This endpoint registers a vote in the voting service for the turkey emoji.",
+        "operationId": "voteTurkey",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteRabbit": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'rabbit' emoji. This endpoint registers a vote indicating the user's preference for the rabbit emoji.",
+        "operationId": "voteRabbit",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteNoGoodWoman": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'no_good_woman' emoji. This endpoint registers a vote for the emoji identified as 'no_good_woman'. It does not require any parameters in the request body.",
+        "operationId": "VoteNoGoodWoman",
+        "summary": "Cast vote for 'no_good_woman' emoji",
+        "requestBody": {
+          "description": "Request to cast a vote for the 'no_good_woman' emoji.",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response indicating the vote was recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "votes": {
+                      "type": "integer",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteOkWoman": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'ok_woman' emoji by invoking the VoteOkWoman endpoint. This endpoint registers a vote for the emoji shortcode ':ok_woman:' with the voting service and returns a response indicating the success or failure of the vote operation.",
+        "operationId": "voteOkWoman",
+        "responses": {
+          "200": {
+            "description": "A successful vote response indicating the vote was recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the 'ok_woman' emoji.",
+        "requestBody": {
+          "description": "Request payload for voting 'ok_woman' emoji. No request body fields are required.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteRaisingHandWoman": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'raising_hand_woman' emoji. This endpoint registers a vote for that specific emoji in the current poll.",
+        "operationId": "voteRaisingHandWoman",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast for the raising_hand_woman emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred while casting the vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBowingMan": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'bowing_man' emoji. This endpoint accepts a POST request with an empty body and returns a response indicating the voting action outcome.",
+        "operationId": "VoteBowingMan",
+        "requestBody": {
+          "description": "Empty request body for the VoteBowingMan action.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledgement of the vote cast for 'bowing_man'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteManFacepalming": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'man_facepalming' emoji. This endpoint records a vote for the man_facepalming emoji and returns a confirmation response.",
+        "operationId": "voteManFacepalming",
+        "responses": {
+          "200": {
+            "description": "Vote cast successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error occurred while casting vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteWomanShrugging": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'woman_shrugging' emoji.",
+        "operationId": "voteWomanShrugging",
+        "responses": {
+          "200": {
+            "description": "Successful vote response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteMassageWoman": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'massage_woman' emoji.",
+        "operationId": "VoteMassageWoman",
+        "responses": {
+          "200": {
+            "description": "Successful vote response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteWalkingMan": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'walking_man' emoji.",
+        "operationId": "voteWalkingMan",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteRunningMan": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'running_man' emoji. This endpoint does not require any request body parameters and responds with an empty VoteResponse on success.",
+        "operationId": "voteRunningMan",
+        "requestBody": {
+          "description": "Empty request payload for voting 'running_man' emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully cast vote for 'running_man' emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteDancer": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the dancer emoji.",
+        "operationId": "voteDancer",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "votes": {
+                      "type": "integer",
+                      "description": "The updated number of votes after casting"
+                    }
+                  },
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteManDancing": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the man dancing emoji. This endpoint registers a vote for the :man_dancing: emoji and returns a simple confirmation response.",
+        "operationId": "voteManDancing",
+        "responses": {
+          "200": {
+            "description": "Vote registered successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteDancingWomen": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the dancing women emoji. The request has an empty body as per the VoteRequest protobuf definition, and the response is a VoteResponse without properties. This endpoint records a vote for the ':dancing_women:' emoji.",
+        "operationId": "voteDancingWomen",
+        "responses": {
+          "200": {
+            "description": "Success response with empty VoteResponse indicating vote was recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Empty VoteRequest payload to cast a vote.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteRainbow": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the rainbow emoji. This endpoint registers a user's vote for the rainbow emoji and returns a confirmation response.",
+        "operationId": "voteRainbow",
+        "responses": {
+          "200": {
+            "description": "Successful vote submission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error occurred during vote submission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteSkier": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the skier emoji by invoking the VoteSkier RPC endpoint. This endpoint takes an empty VoteRequest in the request body and returns an empty VoteResponse indicating that the vote has been registered.",
+        "operationId": "voteSkier",
+        "requestBody": {
+          "description": "Empty VoteRequest payload.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful vote response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteGolfingMan": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the golfing man emoji. This endpoint registers a vote for the emoji identified as ':golfing_man:'. It accepts no request body content and returns an empty response object upon successful vote submission.",
+        "operationId": "voteGolfingMan",
+        "responses": {
+          "200": {
+            "description": "Vote was successfully registered.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the golfing man emoji",
+        "requestBody": {
+          "description": "Empty request body for casting a vote.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteSurfingMan": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "summary": "Cast a vote for the surfing man emoji.",
+        "description": "Cast a vote for the surfing man emoji.",
+        "operationId": "voteSurfingMan",
+        "requestBody": {
+          "description": "Request to cast a vote for the surfing man emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vote was successfully recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBasketballMan": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the basketball man emoji.",
+        "operationId": "VoteBasketballMan",
+        "responses": {
+          "200": {
+            "description": "Successful voting response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBikingMan": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the biking man emoji.",
+        "operationId": "VoteBikingMan",
+        "responses": {
+          "200": {
+            "description": "Vote cast successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the biking man emoji.",
+        "requestBody": {
+          "description": "Empty request to cast a vote for the biking man emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VotePointUp2": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the point up 2 emoji. This endpoint registers a user's vote for the \"point_up_2\" emoji and returns a confirmation response.",
+        "operationId": "VotePointUp2",
+        "responses": {
+          "200": {
+            "description": "Vote accepted and counted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the point up 2 emoji.",
+        "requestBody": {
+          "description": "Vote request payload.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteVulcanSalute": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the 'vulcan_salute' emoji. This endpoint registers a vote on the server for the vulcan_salute emoji and returns a confirmation response.",
+        "operationId": "VoteVulcanSalute",
+        "responses": {
+          "200": {
+            "description": "A successful response confirming the vote was recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteMetal": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the 'metal' emoji using a POST request. This endpoint registers a vote for the emoji identified as 'metal'. No request parameters or request body content required.",
+        "operationId": "voteMetal",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteCallMeHand": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the 'call_me_hand' emoji. This endpoint registers a vote to the poll for the call_me_hand emoji and returns an empty response upon success.",
+        "operationId": "voteCallMeHand",
+        "responses": {
+          "200": {
+            "description": "Successfully cast the vote for the call_me_hand emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the 'call_me_hand' emoji.",
+        "requestBody": {
+          "description": "Empty request body to cast the vote for the call_me_hand emoji.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "parameters": []
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteThumbsup": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the 'thumbsup' emoji. This endpoint registers a vote for the thumbs-up emoji in the voting poll.",
+        "operationId": "VoteThumbsup",
+        "responses": {
+          "200": {
+            "description": "Successful vote submission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteWave": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the 'wave' emoji. This endpoint registers a user's vote for the wave emoji and returns a response indicating the result of the voting action.",
+        "operationId": "castWaveEmojiVote",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error occurred during voting",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteClap": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the 'clap' emoji. This endpoint registers a vote for the clap emoji in the voting poll.",
+        "operationId": "VoteClap",
+        "responses": {
+          "200": {
+            "description": "Vote for clap emoji was successfully registered.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "shortcode": {
+                      "type": "string",
+                      "description": "Emoji shortcode voted for, i.e., ':clap:'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteRaisedHands": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the 'raised_hands' emoji. This endpoint registers a vote for the raised_hands emoji in the voting service.",
+        "operationId": "voteRaisedHands",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Empty request body for casting a vote for the raised_hands emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for 'raised_hands' emoji"
+      }
+    },
+    "/emojivoto.v1.VotingService/VotePray": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the 'pray' emoji. This endpoint allows the client to submit a vote representing the 'pray' emoji in the voting service.",
+        "operationId": "VotePray",
+        "responses": {
+          "200": {
+            "description": "Vote was successfully recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "shortcode": {
+                      "type": "string"
+                    },
+                    "votes": {
+                      "type": "integer"
+                    }
+                  },
+                  "nullable": true
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the 'pray' emoji.",
+        "requestBody": {
+          "description": "Empty request body for voting the 'pray' emoji.",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteDog": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the 'dog' emoji. This endpoint records a vote for the dog emoji and returns an empty response on success.",
+        "operationId": "voteDog",
+        "requestBody": {
+          "description": "Empty request body for voting the dog emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully cast a vote for the dog emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteCat2": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the 'cat2' emoji by invoking the VoteCat2 RPC endpoint in the VotingService.",
+        "operationId": "voteCat2",
+        "responses": {
+          "200": {
+            "description": "Successful vote response indicating the vote for 'cat2' was counted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the 'cat2' emoji.",
+        "requestBody": {
+          "description": "Optional request body for the vote operation (unused).",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VotePig": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the pig emoji.",
+        "operationId": "VotePig",
+        "responses": {
+          "200": {
+            "description": "A response to confirm the pig emoji vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a pig emoji vote.",
+        "requestBody": {
+          "description": "An empty request to cast a vote for the pig emoji.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": []
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteHatchingChick": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the hatching chick emoji. This endpoint registers a vote using the VotingService's VoteHatchingChick RPC method, which accepts an empty request and returns an empty response upon success.",
+        "operationId": "voteHatchingChick",
+        "responses": {
+          "200": {
+            "description": "Vote cast successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the hatching chick emoji.",
+        "requestBody": {
+          "description": "Empty request body for VoteHatchingChick RPC",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteSnail": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the snail emoji. This endpoint registers a vote for the snail emoji and returns a generic response indicating success or failure.",
+        "operationId": "voteSnail",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast for snail emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the snail emoji",
+        "requestBody": {
+          "description": "Empty request body to cast a vote for the snail emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBacon": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the bacon emoji. This endpoint registers a vote for the bacon emoji in the voting service.",
+        "operationId": "voteBacon",
+        "responses": {
+          "200": {
+            "description": "Vote cast successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VotePizza": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the pizza emoji. This endpoint registers a user's vote for the pizza emoji in the voting poll.",
+        "operationId": "VotePizza",
+        "responses": {
+          "200": {
+            "description": "A confirmation response that the vote has been counted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteTaco": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the taco emoji. This endpoint registers a vote for the taco emoji and returns an empty response upon success.",
+        "operationId": "VoteTaco",
+        "responses": {
+          "200": {
+            "description": "Vote successfully cast for the taco emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error occurred while casting the taco emoji vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBurrito": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the burrito emoji.",
+        "operationId": "VoteBurrito",
+        "responses": {
+          "200": {
+            "description": "Successful vote response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteRamen": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Cast a vote for the ramen emoji. This endpoint does not require a request body and returns an empty response upon successful vote submission.",
+        "operationId": "VoteRamen",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteDoughnut": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "summary": "Cast a vote for doughnut emoji",
+        "description": "Cast a vote for the doughnut emoji. This endpoint currently returns an error as implemented, indicating the vote cannot be recorded.",
+        "operationId": "voteDoughnut",
+        "requestBody": {
+          "description": "Vote request payload",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vote cast successfully (not implemented in current version)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error returned when vote casting fails",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteChampagne": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "This endpoint allows clients to cast a vote for the champagne emoji. It performs the vote operation without any required request body parameters and returns a response indicating the voting result status.",
+        "operationId": "VoteChampagne",
+        "responses": {
+          "200": {
+            "description": "A successful response indicating the vote for the champagne emoji was recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Empty request body for voting on the champagne emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteTropicalDrink": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the tropical drink emoji via the gRPC VotingService VoteTropicalDrink endpoint. This endpoint records a single vote for the tropical drink emoji.",
+        "operationId": "voteTropicalDrink",
+        "responses": {
+          "200": {
+            "description": "Acknowledgement of a successful vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBeer": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the beer emoji. This endpoint triggers a vote for the beer emoji via the gRPC VotingService's VoteBeer method, which records the vote and returns a VoteResponse.",
+        "operationId": "voteBeer",
+        "requestBody": {
+          "description": "Empty request payload as defined by the VoteRequest message.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful vote registration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteTumblerGlass": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the tumbler glass emoji via a POST gRPC-like API endpoint. This endpoint triggers a vote action with no request body content and returns a confirmation response.",
+        "operationId": "voteTumblerGlass",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast for tumbler glass emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteWorldMap": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the world map emoji via the VoteWorldMap gRPC POST endpoint.",
+        "operationId": "voteWorldMap",
+        "requestBody": {
+          "description": "Empty request body representing a vote request for the world map emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful vote response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBeachUmbrella": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the beach umbrella emoji via a POST gRPC endpoint. This operation triggers a vote increment for the ':beach_umbrella:' emoji within the voting service.",
+        "operationId": "VoteBeachUmbrella",
+        "responses": {
+          "200": {
+            "description": "Successful vote for the beach umbrella emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error."
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteMountainSnow": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the mountain snow emoji via a POST request to the /emojivoto.v1.VotingService/VoteMountainSnow endpoint, following the gRPC VoteMountainSnow method.",
+        "operationId": "voteMountainSnow",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast for mountain snow emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteCamping": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the camping emoji via gRPC endpoint. This endpoint sends an empty VoteRequest and receives a VoteResponse indicating success or failure of the vote.",
+        "operationId": "voteCamping",
+        "responses": {
+          "200": {
+            "description": "Successful vote response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteSteamLocomotive": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the steam locomotive emoji via gRPC endpoint. This POST endpoint registers a single vote for the ':steam_locomotive:' emoji.",
+        "operationId": "voteSteamLocomotive",
+        "responses": {
+          "200": {
+            "description": "Vote successfully cast.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteFlightDeparture": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the flight departure emoji via gRPC endpoint. This endpoint registers a vote identified by the ':flight_departure:' emoji.",
+        "operationId": "VoteFlightDeparture",
+        "responses": {
+          "200": {
+            "description": "A vote was cast successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred while voting.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteRocket": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the rocket emoji via gRPC endpoint. This endpoint registers a user's vote for the rocket emoji by increasing its count in the voting poll.",
+        "operationId": "VoteRocket",
+        "responses": {
+          "200": {
+            "description": "Vote was successfully cast for the rocket emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error occurred during voting.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteStar2": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "This endpoint allows clients to cast a vote for the 'star2' emoji. It accepts a POST request with an empty request body and returns an empty response body indicating the vote was recorded.",
+        "operationId": "voteStar2",
+        "responses": {
+          "200": {
+            "description": "Vote was successfully cast for the 'star2' emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred while attempting to cast the vote."
+          }
+        },
+        "requestBody": {
+          "description": "Empty request body for casting a vote.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteSunBehindSmallCloud": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'sun behind small cloud' emoji. This endpoint handles a POST request to register the vote in the voting service.",
+        "operationId": "voteSunBehindSmallCloud",
+        "responses": {
+          "200": {
+            "description": "Vote registered successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteCloudWithRain": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'cloud with rain' emoji. This endpoint triggers a voting action recorded by the server, incrementing the count for this specific emoji.",
+        "operationId": "voteCloudWithRain",
+        "responses": {
+          "200": {
+            "description": "Vote successfully cast for the 'cloud with rain' emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error occurred while casting vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteFire": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "summary": "Cast a vote for the 'fire' emoji.",
+        "description": "This endpoint casts a vote for the 'fire' emoji by incrementing its vote count in the poll.",
+        "operationId": "voteFire",
+        "responses": {
+          "200": {
+            "description": "Vote cast successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error occurred."
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteJackOLantern": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'jack-o-lantern' emoji.",
+        "operationId": "VoteJackOLantern",
+        "responses": {
+          "200": {
+            "description": "Successfully cast a vote for the 'jack-o-lantern' emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBalloon": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'balloon' emoji. This endpoint registers a vote for the balloon emoji without requiring any request body payload.",
+        "operationId": "voteBalloon",
+        "responses": {
+          "200": {
+            "description": "Vote registered successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteTada": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'tada' emoji. This endpoint accepts an empty POST request body (VoteRequest) and returns a VoteResponse indicating the outcome.",
+        "operationId": "voteTada",
+        "requestBody": {
+          "description": "Empty VoteRequest payload.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vote was successfully cast.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error."
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteTrophy": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'trophy' emoji. This endpoint accepts a POST request with an empty request body and responds with a confirmation of the vote cast.",
+        "operationId": "VoteTrophy",
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the vote was cast successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Empty request body when casting a vote for the 'trophy' emoji.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteIphone": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'iphone' emoji.",
+        "operationId": "voteIphone",
+        "responses": {
+          "200": {
+            "description": "A successful vote response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VotePager": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the 'pager' emoji. This endpoint accepts a POST request with a VoteRequest payload and returns a VoteResponse indicating success or failure.",
+        "operationId": "VotePager",
+        "requestBody": {
+          "description": "Vote request payload, currently schema is empty.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful vote cast response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteFax": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the :fax: emoji. This endpoint accepts a POST request with an empty body and registers a vote for the fax emoji in the voting service.",
+        "operationId": "VoteFax",
+        "responses": {
+          "200": {
+            "description": "Vote successfully cast for the :fax: emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteBulb": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the :bulb: emoji. This endpoint registers a vote for the bulb emoji and returns a VoteResponse indicating the result of the operation.",
+        "operationId": "VoteBulb",
+        "responses": {
+          "200": {
+            "description": "Successful vote cast for the :bulb: emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Request to cast a vote for the :bulb: emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteMoneyWithWings": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the :money_with_wings: emoji without requiring any request body parameters.",
+        "operationId": "VoteMoneyWithWings",
+        "responses": {
+          "200": {
+            "description": "Vote successfully cast for the :money_with_wings: emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteCrystalBall": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "summary": "Cast a vote for the :crystal_ball: emoji.",
+        "description": "This endpoint casts a vote for the :crystal_ball: emoji by invoking the VoteCrystalBall RPC method.",
+        "operationId": "voteCrystalBall",
+        "responses": {
+          "200": {
+            "description": "Vote was successfully registered.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteUnderage": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the :underage: emoji.",
+        "operationId": "voteUnderage",
+        "responses": {
+          "200": {
+            "description": "Successful vote casting response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Cast a vote for the :underage: emoji",
+        "requestBody": {
+          "description": "Vote request payload (empty)",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteInterrobang": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the :interrobang: emoji.",
+        "operationId": "VoteInterrobang",
+        "responses": {
+          "200": {
+            "description": "Vote recorded successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/Vote100": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "This endpoint allows clients to cast a vote for the :100: emoji. It performs no input parameters and returns a response indicating the result of the vote operation.",
+        "operationId": "vote100Emoji",
+        "responses": {
+          "200": {
+            "description": "Vote successfully cast for the :100: emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error occurred while casting vote for the :100: emoji.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteCheckeredFlag": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "This endpoint allows clients to cast a vote for the :checkered_flag: emoji, incrementing its vote count.",
+        "operationId": "voteCheckeredFlag",
+        "responses": {
+          "200": {
+            "description": "Vote cast successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteCrossedSwords": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the :crossed_swords: emoji. This endpoint registers a single vote for the crossed swords emoji in the voting service.",
+        "operationId": "voteCrossedSwords",
+        "responses": {
+          "200": {
+            "description": "Vote was successfully cast.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/VoteFloppyDisk": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Casts a vote for the :floppy_disk: emoji. This endpoint registers a vote for the floppy disk emoji in the voting service.",
+        "operationId": "voteFloppyDisk",
+        "responses": {
+          "200": {
+            "description": "Vote was cast successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.VotingService/Results": {
+      "post": {
+        "tags": [
+          "voting"
+        ],
+        "description": "Returns the voting results for all emojis in the poll, including the shortcode and the total number of votes for each emoji.",
+        "operationId": "postVotingServiceResults",
+        "responses": {
+          "200": {
+            "description": "A JSON array of voting results for each emoji with their shortcodes and vote counts.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "Shortcode": {
+                            "type": "string",
+                            "description": "The emoji shortcode identifier."
+                          },
+                          "Votes": {
+                            "type": "integer",
+                            "description": "The number of votes received by the emoji."
+                          }
+                        }
+                      },
+                      "description": "List of voting results."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
