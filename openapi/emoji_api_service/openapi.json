@@ -1,0 +1,139 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Emoji API Service",
+    "description": "Provides emoji data API, including listing all emojis and looking up by shortcode. Exposes gRPC endpoints for other internal services. | 3 routes discovered",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "emoji",
+      "description": "Operations related to emoji data (listing, lookup by shortcode)"
+    }
+  ],
+  "paths": {
+    "/emojivoto.v1.EmojiService/ListAll": {
+      "post": {
+        "tags": [
+          "emoji"
+        ],
+        "description": "Lists all available emoji objects with their Unicode and shortcode representations.",
+        "operationId": "listAllEmoji",
+        "responses": {
+          "200": {
+            "description": "A list of available emojis.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "Unicode": {
+                            "type": "string"
+                          },
+                          "Shortcode": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.EmojiService/FindByShortcode": {
+      "post": {
+        "tags": [
+          "emoji"
+        ],
+        "description": "Returns a specific emoji object given its shortcode. The request body must contain a JSON object with the required property \"shortcode\" which is the shortcode string to find the emoji for. The response returns an emoji object containing its unicode and shortcode if found, or null if no matching emoji is found.",
+        "operationId": "findEmojiByShortcode",
+        "parameters": [],
+        "requestBody": {
+          "description": "Request payload containing the shortcode to find the emoji for.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "shortcode": {
+                    "type": "string",
+                    "description": "The shortcode string to look up the emoji for."
+                  }
+                },
+                "required": [
+                  "shortcode"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with the emoji matching the shortcode, or null if not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "emoji": {
+                      "type": "object",
+                      "nullable": true,
+                      "properties": {
+                        "unicode": {
+                          "type": "string",
+                          "description": "The unicode character representation of the emoji."
+                        },
+                        "shortcode": {
+                          "type": "string",
+                          "description": "The shortcode of the emoji."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "tags": [
+          "emoji"
+        ],
+        "description": "Exposes Prometheus metrics for the emoji API service. This endpoint provides metrics in a format consumable by Prometheus for monitoring the service's health and performance.",
+        "operationId": "getEmojiMetrics",
+        "responses": {
+          "200": {
+            "description": "Successfully returned Prometheus metrics",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
