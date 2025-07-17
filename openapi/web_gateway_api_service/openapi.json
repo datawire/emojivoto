@@ -1,0 +1,212 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Web Gateway API Service",
+    "description": "A web server providing a REST/HTTP API interface for frontend apps and users, acting as a client to both the emoji and voting gRPC services. Exposes endpoints to list all emoji, vote for emoji, fetch leaderboard results, and retrieve the OpenAPI specification. | 4 routes discovered",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "web-api",
+      "description": "Main web endpoints aggregating emoji and voting functionality"
+    },
+    {
+      "name": "emoji",
+      "description": "Listing and lookup of emojis via the HTTP API"
+    },
+    {
+      "name": "voting",
+      "description": "Voting-related HTTP endpoints and leaderboard queries"
+    },
+    {
+      "name": "openapi",
+      "description": "API documentation and OpenAPI schema"
+    }
+  ],
+  "paths": {
+    "/api/list": {
+      "get": {
+        "tags": [
+          "emoji",
+          "web-api"
+        ],
+        "description": "Lists all available emoji by retrieving them from the gRPC emoji service and returning their shortcodes and unicodes.",
+        "operationId": "listEmojiHandler",
+        "responses": {
+          "200": {
+            "description": "A JSON array of available emoji with their shortcodes and unicodes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "shortcode": {
+                        "type": "string"
+                      },
+                      "unicode": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/vote": {
+      "post": {
+        "tags": [
+          "voting",
+          "web-api"
+        ],
+        "description": "Submits a user's vote for a specified emoji shortcode. The emoji shortcode is passed as a form parameter 'choice'. The server validates the shortcode, checks its existence, then calls the corresponding gRPC voting RPC method for that emoji. Returns HTTP 400 for missing or invalid shortcode, or HTTP 500 for internal errors.",
+        "operationId": "submitVoteForEmoji",
+        "parameters": [],
+        "requestBody": {
+          "description": "Emoji shortcode to vote for, sent as a form parameter named 'choice'.",
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "choice": {
+                    "type": "string",
+                    "description": "The shortcode of the emoji to vote for."
+                  }
+                },
+                "required": [
+                  "choice"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vote accepted and processed successfully."
+          },
+          "400": {
+            "description": "Bad request due to missing or invalid emoji shortcode.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred while processing the vote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/leaderboard": {
+      "get": {
+        "tags": [
+          "voting",
+          "emoji",
+          "web-api"
+        ],
+        "description": "Returns the current emoji voting leaderboard with vote counts and emoji metadata. Each leaderboard entry includes the emoji shortcode, unicode character, and the total votes received.",
+        "operationId": "getEmojiVotingLeaderboard",
+        "responses": {
+          "200": {
+            "description": "A JSON array of emoji leaderboard entries with vote counts and emoji metadata.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "shortcode": {
+                        "type": "string",
+                        "description": "Emoji shortcode, e.g., ':joy:'"
+                      },
+                      "unicode": {
+                        "type": "string",
+                        "description": "Emoji unicode character"
+                      },
+                      "votes": {
+                        "type": "string",
+                        "description": "Vote count as a string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get the current emoji voting leaderboard"
+      }
+    },
+    "/api/openapi": {
+      "get": {
+        "tags": [
+          "openapi",
+          "web-api"
+        ],
+        "description": "Serves the OpenAPI specification for the web API as JSON, generating the doc dynamically from the OpenAPI YAML file located at /.ambassador-internal/openapi.yaml.",
+        "operationId": "getOpenApiSpec",
+        "responses": {
+          "200": {
+            "description": "Successfully returned the OpenAPI specification as JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error: failed to load or serve OpenAPI specification.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

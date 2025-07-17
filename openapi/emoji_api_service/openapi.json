@@ -1,0 +1,169 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Emoji API Service",
+    "description": "A gRPC API service providing Emoji data and lookup capabilities, supporting operations to list all emoji and find emoji by shortcode. It maintains an in-memory list of the top 100 emojis and exposes an API for emoji retrieval. | 3 routes discovered",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "emoji",
+      "description": "Operations related to listing and looking up emojis"
+    }
+  ],
+  "paths": {
+    "/emojivoto.v1.EmojiService/ListAll": {
+      "post": {
+        "tags": [
+          "emoji"
+        ],
+        "summary": "Lists all available emoji.",
+        "description": "This endpoint lists all available emoji by returning a list of emoji objects, each containing a Unicode character and its corresponding shortcode.",
+        "operationId": "listAllEmoji",
+        "requestBody": {
+          "description": "Empty request body for listing all emoji.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A JSON array of emoji objects, each with Unicode and shortcode fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "List": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "Unicode": {
+                            "type": "string"
+                          },
+                          "Shortcode": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "Unicode",
+                          "Shortcode"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "List"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emojivoto.v1.EmojiService/FindByShortcode": {
+      "post": {
+        "tags": [
+          "emoji"
+        ],
+        "description": "Finds an emoji by its shortcode. This endpoint accepts a JSON payload with the shortcode and returns the corresponding emoji with its Unicode and shortcode values.",
+        "operationId": "findEmojiByShortcode",
+        "requestBody": {
+          "description": "Shortcode of the emoji to find",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Shortcode": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "Shortcode"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with the emoji matching the shortcode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Emoji": {
+                      "type": "object",
+                      "properties": {
+                        "unicode": {
+                          "type": "string"
+                        },
+                        "shortcode": {
+                          "type": "string"
+                        }
+                      },
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "tags": [
+          "emoji"
+        ],
+        "description": "Exposes Prometheus-ready metrics for monitoring the emoji service via a GET request to the /metrics endpoint.",
+        "operationId": "getEmojiServiceMetrics",
+        "responses": {
+          "200": {
+            "description": "Successful response with Prometheus metrics",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
